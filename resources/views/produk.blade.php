@@ -52,49 +52,51 @@
     </div>
 
     {{-- Table --}}
-    <table class="w-full text-center border-2 border-gray-200">
+    <div class="w-full flex flex-col justify-center tablediv">
+        <table class="table-fixed w-full text-center border-2 border-gray-200">
 
-        <thead class="bg-gray-200">
-            <tr>
-                <th class="px-6 py-4">Gambar</th>
-                <th class="px-6 py-4">Nama</th>
-                <th class="px-6 py-4">Kategori</th>
-                <th class="px-6 py-4">Harga Beli</th>
-                <th class="px-6 py-4">Harga Jual</th>
-                <th class="px-6 py-4">Stok</th>
-                <th class="px-6 py-4">Actions</th>
-            </tr>
-        </thead>
-        @foreach ($products as $product)
-            <tr>
-                <td class="px-6 py-4"><img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-10"></td>
-                <td class="px-6 py-4">{{ $product->name }}</td>
-                <td class="px-6 py-4">{{ $product->category }}</td>
-                <td class="px-6 py-4">{{ $product->buy_price }}</td>
-                <td class="px-6 py-4">{{ $product->sell_price }}</td>
-                <td class="px-6 py-4">{{ $product->stock }}</td>
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="px-6 py-4">Gambar</th>
+                    <th class="px-6 py-4">Nama</th>
+                    <th class="px-6 py-4">Kategori</th>
+                    <th class="px-6 py-4">Harga Beli</th>
+                    <th class="px-6 py-4">Harga Jual</th>
+                    <th class="px-6 py-4">Stok</th>
+                    <th class="px-6 py-4">Actions</th>
+                </tr>
+            </thead>
+            @foreach ($products as $product)
+                <tr>
+                    <td class="px-6 py-4"><img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-10"></td>
+                    <td class="px-6 py-4">{{ $product->name }}</td>
+                    <td class="px-6 py-4">{{ $product->category }}</td>
+                    <td class="px-6 py-4">{{ $product->buy_price }}</td>
+                    <td class="px-6 py-4">{{ $product->sell_price }}</td>
+                    <td class="px-6 py-4">{{ $product->stock }}</td>
 
-                <td class="px-6 py-4 flex flex-row justify-center">
-                    <a href="{{ route('edit', $product->id) }}">
-                        <button class="m-1 cursor-pointer bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                            <img src="{{ asset('images/edit.png') }}" alt="Edit" class="h-5 w-5">
-                        </button>
-                    </a>
-                    <form action="{{ route('destroy', $product->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="m-1 cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                            <img src="{{ asset('images/delete.png') }}" alt="Delete" class="h-5 w-5">
-                        </button>
-                    </form>
-                </td>
-            </tr>
+                    <td class="px-6 py-4 flex flex-row justify-center">
+                        <a href="{{ route('edit', $product->id) }}">
+                            <button class="m-1 cursor-pointer bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                <img src="{{ asset('images/edit.png') }}" alt="Edit" class="h-5 w-5">
+                            </button>
+                        </a>
+                        <form action="{{ route('destroy', $product->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="m-1 cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                <img src="{{ asset('images/delete.png') }}" alt="Delete" class="h-5 w-5">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
 
-        @endforeach
+            @endforeach
 
 
-    </table>
-    {{ $products->links() }}
+        </table>
+        {{ $products->links() }}
 
+    </div>
 
 </x-layout>
