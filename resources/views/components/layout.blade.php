@@ -27,13 +27,15 @@
                 {{ $slot }}
             </div>
         </main>
-    </div>
+        {{-- Footer --}}
 
-    {{-- Footer --}}
+    </div>
     <footer class="w-full bg-gray-800 text-white bottom-0 p-4 flex flex-col items-center content-center">
         <div>
             &copy; 2025 Lucky Feliyanto
         </div>
     </footer>
+
+
 </body>
 </html>

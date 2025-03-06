@@ -21,6 +21,7 @@
                         @foreach ($categories as $category)
                             <option value="{{ $category->category }}">{{ $category->category }}</option>
                         @endforeach
+                        <option value="category" selected disabled>Category</option>
                     </select>
                     <button type="submit" class="m-1 cursor-pointer bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Filter</button>
                 </form>
@@ -66,7 +67,8 @@
                     <th class="px-6 py-4">Actions</th>
                 </tr>
             </thead>
-            @foreach ($products as $product)
+            <tbody>
+                @foreach ($products as $product)
                 <tr>
                     <td class="px-6 py-4"><img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-10"></td>
                     <td class="px-6 py-4">{{ $product->name }}</td>
@@ -84,18 +86,20 @@
                         <form action="{{ route('destroy', $product->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="m-1 cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            <button onclick="return confirm('Are you sure?')" class="m-1 cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                 <img src="{{ asset('images/delete.png') }}" alt="Delete" class="h-5 w-5">
                             </button>
                         </form>
                     </td>
                 </tr>
+                @endforeach
+            </tbody>
 
-            @endforeach
 
 
         </table>
-        {{ $products->links() }}
+        <div class="mt-2">{{ $products->links() }}</div>
+
 
     </div>
 

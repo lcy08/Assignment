@@ -21,25 +21,28 @@ Route::post('/login', function () {
 })->name('post-login');
 
 Route::get('/', function () {
-    $category = ProductsList::select('category')->distinct()->get();
+    $categories = ProductsList::select('category')->distinct()->get();
     $products = ProductsList::paginate(5);
-    return view('produk', ['products' => $products, 'categories' => $category]);
+    return view('produk', ['products' => $products, 'categories' => $categories]);
 })->middleware('auth')->name('produk');
 
 Route::get('/search', function () {
     $search = request('search');
+    $categories = ProductsList::select('category')->distinct()->get();
     $results = ProductsList::where('name', 'like', '%' . $search . '%')->paginate(5);
-    return view('produk', ['products' => $results]);
+    return view('produk', ['products' => $results, 'categories' => $categories]);
 })->middleware('auth')->name('search');
 
 Route::get('/filter', function () {
     $category = request('category');
+    $categories = ProductsList::select('category')->distinct()->get();
     $results = ProductsList::where('category', 'like', '%' . $category . '%')->paginate(5);
-    return view('produk', ['products' => $results]);
+    return view('produk', ['products' => $results, 'categories' => $categories]);
 })->middleware('auth')->name('filter');
 
 Route::get('/add', function () {
-    return view('add');
+    $categories = ProductsList::select('category')->distinct()->get();
+    return view('add', ['categories' => $categories]);
 })->middleware('auth')->name('add');
 
 Route::post('/add', function () {
@@ -49,14 +52,19 @@ Route::post('/add', function () {
     $product->sell_price = request('sell_price');
     $product->stock = request('stock');
     $product->category = request('category');
-    $product->image = request('image');
+
+    $file = request()->file('image');
+    $file->move(public_path('images'), $file->getClientOriginalName());
+    $product->image = 'images/' . $file->getClientOriginalName();
+
     $product->save();
     return redirect()->route('produk');
 })->middleware('auth')->name('post');
 
 Route::get('/{id}/edit', function ($id) {
     $product = ProductsList::find($id);
-    return view('edit', ['product' => $product]);
+    $categories = ProductsList::select('category')->distinct()->get();
+    return view('edit', ['product' => $product, 'categories' => $categories]);
 })->middleware('auth')->name('edit');
 
 Route::put('/{id}/edit', function ($id) {
@@ -66,12 +74,16 @@ Route::put('/{id}/edit', function ($id) {
     $product->sell_price = request('sell_price');
     $product->stock = request('stock');
     $product->category = request('category');
-    $product->image = request('image');
+
+    $file = request()->file('image');
+    $file->move(public_path('images'), $file->getClientOriginalName());
+    $product->image = 'images/' . $file->getClientOriginalName();
+
     $product->save();
     return redirect()->route('produk');
 })->middleware('auth')->name('update');
 
-Route::delete('/{id}', function ($id) {
+Route::delete('/{id}', function ($id, ) {
     $product = ProductsList::find($id);
     $product->delete();
     return redirect()->route('produk');
