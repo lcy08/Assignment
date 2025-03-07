@@ -37,7 +37,7 @@
                 <input type="text" name="stock" id="stock" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4">
-                <label for="image" class="flex flex-col items-center justify-center w-full h-150 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
+                <label for="image" class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
                         <img src="{{ asset('images/Image.png') }}" alt="Edit" class="h-25 w-25">
                         Gambar
