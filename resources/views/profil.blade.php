@@ -2,7 +2,12 @@
     <x-slot name="header">
         Lucky Feliyanto
     </x-slot>
-    <img src="{{ asset('images/Frame 98700.png') }}" alt="profile" class="h-50 w-50 mb-5">
+
+    <div>
+        <img src="{{ asset('images/LF.jpg') }}" alt="profile" class="bg-white h-50 w-50 object-contain rounded-full mb-4">
+    </div>
+
+
 
     <div class="flex md:flex-row flex-col">
         <div class="w-full flex-1 md:flex-col md:flex-2/3 mb-2">
