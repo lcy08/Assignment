@@ -17,7 +17,7 @@ Route::post('/login', function () {
         return redirect()->route('produk');
     }
 
-    return redirect()->route('login', ['error' => 'Username atau Password salah']);
+    return redirect()->route('login')->with('error', 'Invalid username or password');
 })->name('post-login');
 
 Route::get('/', function () {
