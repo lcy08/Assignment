@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProductsExportController;
 use Illuminate\Support\Facades\Route;
 use App\Models\ProductsList;
 use function Laravel\Prompts\alert;
+use Illuminate\Http\Request;
 
 Route::get('/login', function () {
     return view('login');
@@ -98,4 +98,7 @@ Route::get('/logout', function () {
     return redirect()->route('login');
 })->middleware('auth')->name('logout');
 
-Route::get('/export', [ProductsExportController::class, 'index'])->middleware('auth')->name('export');
+Route::get('/export', function(){
+    return view('ExportProducts', ['products' => ProductsList::all()]);
+})->name('export')->middleware('auth');
+

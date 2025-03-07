@@ -8,8 +8,8 @@
         <div class="flex flex-col md:flex-row justify-start">
             {{-- Search Bar --}}
             <div class="flex flex-col">
-                <form action="{{ route('search') }}" method="GET">
-                    <input type="text" name="search" placeholder="Search Products" class="rounded-md border-2 border-gray-200 p-2 m-1">
+                <form action="{{ route('search')}}" method="GET">
+                    <input type="text" name="search" placeholder="Search Products" class="rounded-md border-2 border-gray-200 p-2 m-1" value="{{  $search  }}">
                     <button type="submit" class="m-1 cursor-pointer bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Search</button>
                 </form>
             </div>

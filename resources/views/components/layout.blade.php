@@ -12,6 +12,7 @@
     <x-dropdown class="lg:hidden sticky w-full" />
 
     {{-- Full Content --}}
+
     <div class="flex flex-col md:flex-row min-h-screen">
 
         {{-- Sidebar Menu for desktop --}}
@@ -27,14 +28,16 @@
                 {{ $slot }}
             </div>
         </main>
-        {{-- Footer --}}
+
 
     </div>
-    <footer class="w-full bg-gray-800 text-white bottom-0 p-4 flex flex-col items-center content-center">
+    {{-- Footer --}}
+    <footer class="w-full bg-gray-800 text-white bottom-0 p-4 flex flex-col items-center content-center sticky">
         <div>
             &copy; 2025 Lucky Feliyanto
         </div>
     </footer>
+
 
 
 </body>
