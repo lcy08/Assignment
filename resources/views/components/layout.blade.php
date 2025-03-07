@@ -12,7 +12,7 @@
     <x-dropdown class="lg:hidden sticky w-full" />
 
     {{-- Full Content --}}
-    <div class="flex flex-col md:flex-row md:h-screen">
+    <div class="flex flex-col md:flex-row min-h-screen">
 
         {{-- Sidebar Menu for desktop --}}
         <x-sidebar class="hidden lg:flex w-50 bg-gray-800 text-white sticky top-0 " />
