@@ -17,7 +17,7 @@ Route::post('/login', function () {
         return redirect()->route('produk');
     }
 
-    alert("Login Gagal");
+    return redirect()->route('login', ['error' => 'Username atau Password salah']);
 })->name('post-login');
 
 Route::get('/', function () {

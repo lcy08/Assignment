@@ -52,5 +52,8 @@
             </form>
         </div>
     </div>
+    <script>
+        alert("Username atau Password salah!");
+    </script>
 </body>
 </html>
